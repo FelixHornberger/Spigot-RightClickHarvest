@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="RightClickHarvest:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RightClickHarvest_jar</output-path>
+    <root id="archive" name="RightClickHarvest.jar">
+      <element id="module-output" name="RightClickHarvest" />
+    </root>
+  </artifact>
+</component>
