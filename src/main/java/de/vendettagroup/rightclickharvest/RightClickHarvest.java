@@ -15,17 +15,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
-
-
 
 public class RightClickHarvest implements Listener {
-
-    private Plugin plugin;
-
-    public RightClickHarvest(Plugin plugin) {
-        this.plugin = plugin;
-    }
 
     @EventHandler
     public void rightClick(PlayerInteractEvent e) {
@@ -95,7 +86,7 @@ public class RightClickHarvest implements Listener {
         return m == Material.JUNGLE_LOG || m == Material.STRIPPED_JUNGLE_LOG;
     }
 
-    //Normally CoCpaBeansFace North so i wont ask for that direction(Z-1)
+    //Normally CoCpaBeansFace North so i ask for that first
     private void changeCocaDirection(Block b) {
         if(checkForCoca(b.getType())) {
             BlockData blockData = b.getBlockData();

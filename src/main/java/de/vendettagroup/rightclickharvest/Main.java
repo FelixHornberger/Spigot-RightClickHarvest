@@ -19,7 +19,7 @@ public class Main extends JavaPlugin {
     }
 
     private void registerEvent() {
-        plugin.getServer().getPluginManager().registerEvents(new RightClickHarvest(this), this);
+        plugin.getServer().getPluginManager().registerEvents(new RightClickHarvest(), this);
     }
 
 }

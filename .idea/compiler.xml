@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Spigot-RightClickHarvest" />
         <module name="RightClickHarvest" />
+        <module name="rightClickHarvest" />
       </profile>
     </annotationProcessing>
   </component>
