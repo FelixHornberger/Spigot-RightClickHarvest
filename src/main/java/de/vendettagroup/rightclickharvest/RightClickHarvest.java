@@ -96,13 +96,11 @@ public class RightClickHarvest implements Listener {
             Location testForJungleLogSouth = cocoaBean;
             testForJungleLogSouth.setZ(cocoaBeanZ-1);
             if(checkForJungleLog(testForJungleLogSouth.getBlock().getType())){
-                System.out.println("South");
                 return;
             }
             Location testForJungleLogNorth = cocoaBean;
             testForJungleLogNorth.setZ(cocoaBeanZ+1);
             if(checkForJungleLog(testForJungleLogNorth.getBlock().getType())) {
-                System.out.println("North");
                 ((Directional) blockData).setFacing(BlockFace.SOUTH);
                 b.setBlockData(blockData);
                 return;
@@ -111,7 +109,6 @@ public class RightClickHarvest implements Listener {
             testForJungleLogWest.setX(cocoaBeanX-1);
             testForJungleLogWest.setZ(cocoaBeanZ);
             if(checkForJungleLog(testForJungleLogWest.getBlock().getType())) {
-                System.out.println("West");
                 ((Directional) blockData).setFacing(BlockFace.WEST);
                 b.setBlockData(blockData);
                 return;
@@ -120,7 +117,6 @@ public class RightClickHarvest implements Listener {
             testForJungleLogEast.setX(cocoaBeanX+1);
             testForJungleLogEast.setZ(cocoaBeanZ);
             if(checkForJungleLog(testForJungleLogEast.getBlock().getType())) {
-                System.out.println("East");
                 ((Directional) blockData).setFacing(BlockFace.EAST);
                 b.setBlockData(blockData);
                 return;
