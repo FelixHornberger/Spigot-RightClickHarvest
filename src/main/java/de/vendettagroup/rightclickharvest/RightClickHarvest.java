@@ -1,12 +1,10 @@
 package de.vendettagroup.rightclickharvest;
 
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +13,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
 
 public class RightClickHarvest implements Listener {
 
@@ -41,7 +41,11 @@ public class RightClickHarvest implements Listener {
         Material setToBlock = b.getType();
         p.swingMainHand();
         changeOutput(b, p);
-        b.breakNaturally();
+        if(!checkForLuck(b, p)){
+            b.breakNaturally();
+        } else {
+            b.breakNaturally(p.getInventory().getItemInMainHand());
+        }
         b.setType(setToBlock);
         changeItemDurability(b.getType() ,p);
         changeCocaDirection(b);
@@ -161,10 +165,23 @@ public class RightClickHarvest implements Listener {
             }
         }
         if (seedInDrop) {
-            b.getDrops().remove(new ItemStack(seed,1));
+            b.getDrops().remove(new ItemStack(seed, -1));
         } else {
             p.getInventory().remove(new ItemStack(seed, 1));
         }
+    }
+
+    private boolean checkForLuck(Block b, Player p){
+        if(b.getType() != Material.COCOA) {
+            if (p.getInventory().getItemInMainHand().getType() != Material.AIR) {
+                if(p.getInventory().getItemInMainHand().containsEnchantment(Enchantment.LOOT_BONUS_BLOCKS)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
     }
 
 }
