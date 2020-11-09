@@ -4,7 +4,6 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.*;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 public class RightClickHarvest implements Listener {
 
@@ -40,12 +39,7 @@ public class RightClickHarvest implements Listener {
     private void harvest(Block b, Player p) {
         Material setToBlock = b.getType();
         p.swingMainHand();
-        changeOutput(b, p);
-        if(!checkForLuck(b, p)){
-            b.breakNaturally();
-        } else {
-            b.breakNaturally(p.getInventory().getItemInMainHand());
-        }
+        changeOutputAndBreak(b, p);
         b.setType(setToBlock);
         changeItemDurability(b.getType() ,p);
         changeCocaDirection(b);
@@ -137,7 +131,7 @@ public class RightClickHarvest implements Listener {
             case CARROTS:
                 return Material.CARROT;
             case BEETROOTS:
-                return Material.BEETROOT;
+                return Material.BEETROOT_SEEDS;
             case NETHER_WART:
                 return Material.NETHER_WART;
             case COCOA:
@@ -156,32 +150,20 @@ public class RightClickHarvest implements Listener {
         }
     }
 
-    private void changeOutput(Block b, Player p) {
-        boolean seedInDrop = false;
-        Material seed = getSeed(b.getType());
-        for (ItemStack is : b.getDrops()) {
-            if (is.getType() == seed) {
-                seedInDrop = true;
+    private void changeOutputAndBreak(Block b, Player p) {
+        Collection<ItemStack> blockDrops;
+        Location location = b.getLocation();
+        blockDrops = b.getDrops(p.getInventory().getItemInMainHand());
+        Object[] blockDropItems = blockDrops.toArray(new Object[blockDrops.size()]);
+        for(int i=0; i<blockDropItems.length;i++) {
+            ItemStack item = (ItemStack) blockDropItems[i];
+            if(item.getType() == getSeed(b.getType())){
+                item.setAmount(item.getAmount()-1);
+            }
+            if(item.getAmount() !=0){
+                location.getWorld().dropItemNaturally(location, item);
             }
         }
-        if (seedInDrop) {
-            b.getDrops().remove(new ItemStack(seed, -1));
-        } else {
-            p.getInventory().remove(new ItemStack(seed, 1));
-        }
-    }
 
-    private boolean checkForLuck(Block b, Player p){
-        if(b.getType() != Material.COCOA) {
-            if (p.getInventory().getItemInMainHand().getType() != Material.AIR) {
-                if(p.getInventory().getItemInMainHand().containsEnchantment(Enchantment.LOOT_BONUS_BLOCKS)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
     }
-
 }
