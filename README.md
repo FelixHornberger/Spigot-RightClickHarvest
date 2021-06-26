@@ -7,6 +7,7 @@ Harvest with rightClick
 * When you harvest with right click, there is the arm swing animation and block break sound / nether warts breaking sound.
 * The drops are the default drops, minus one seed / Carrot/Potatoes/ Nether Warts / Cocao_bean.
 * No nasty seed planting anymore. Yeah
+* Does Work with Fortune
 
 ## Works only with: 
 Wheat, Carrots, Potatoes, Beetroots, Nether Warts and Cocoa when you have an Axe in mainhaind

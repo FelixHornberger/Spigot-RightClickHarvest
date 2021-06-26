@@ -9,17 +9,13 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        registerEvent();
+        plugin.getServer().getPluginManager().registerEvents(new RightClickHarvest(), this);
         this.getLogger().info("Hopefully my worst plugin, RightClickHarvest, is loaded");
     }
 
     @Override
     public void onDisable() {
         getLogger().info("RightClickHarvest gets disabeld! Huh?");
-    }
-
-    private void registerEvent() {
-        plugin.getServer().getPluginManager().registerEvents(new RightClickHarvest(), this);
     }
 
 }
