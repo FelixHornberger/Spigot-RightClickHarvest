@@ -1,4 +1,7 @@
 name: RightClickHarvest
-version:  1.4
-api-version: 1.16
+version: 1.5
+api-version: 1.17
 main: de.vendettagroup.rightclickharvest.Main
+description: Harvest Crops with a right Click.
+authors: [ felix2300 ]
+website: https://www.spigotmc.org/resources/rightclickharvest.84620/

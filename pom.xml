@@ -6,7 +6,7 @@
 
     <groupId>de.vendetta-group</groupId>
     <artifactId>RightClickHarvest</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.5</version>
 
     <repositories>
         <repository>
