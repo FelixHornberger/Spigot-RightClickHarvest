@@ -1,5 +1,5 @@
 name: RightClickHarvest
-version:  1.5
-api-version: 1.17
-description: Harvest crops with a Right-Click! Now on 1.17 Oh boy
+version:  1.4
+api-version: 1.16
+softdepend: [mcMMO]
 main: de.vendettagroup.rightclickharvest.Main

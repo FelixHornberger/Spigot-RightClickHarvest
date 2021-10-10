@@ -1,4 +1,5 @@
 name: RightClickHarvest
 version:  1.4
 api-version: 1.16
+softdepend: [mcMMO]
 main: de.vendettagroup.rightclickharvest.Main

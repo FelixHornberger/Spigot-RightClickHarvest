@@ -1,5 +1,6 @@
 package de.vendettagroup.rightclickharvest;
 
+import com.gmail.nossr50.datatypes.experience.XPGainSource;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,8 +18,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-
 import java.util.Collection;
+
+import com.gmail.nossr50.api.ExperienceAPI;
+import org.bukkit.plugin.Plugin;
+
+import static org.bukkit.Bukkit.getLogger;
+import static org.bukkit.Bukkit.getServer;
 
 public class RightClickHarvest implements Listener {
 
@@ -37,6 +43,10 @@ public class RightClickHarvest implements Listener {
             int actualAge = ageable.getAge();
             if (actualAge == ageable.getMaximumAge()) {
                 harvest(b, p);
+                if(checkForMcMMO()){
+                    getLogger().info("checkForMcMMO positive");
+                    ExperienceAPI.addRawXP(p, "Herbalism",50, "UNKNOWN");
+                }
             }
         }
     }
@@ -169,6 +179,13 @@ public class RightClickHarvest implements Listener {
                 location.getWorld().dropItemNaturally(location, item);
             }
         }
+    }
 
+    private boolean checkForMcMMO(){
+        Plugin mcmmo = getServer().getPluginManager().getPlugin("mcMMo");
+        if (mcmmo != null && mcmmo.isEnabled()) {
+            return true;
+        }
+        return false;
     }
 }
