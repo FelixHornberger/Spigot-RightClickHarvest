@@ -10,7 +10,8 @@ Harvest with rightClick
 * Does Work with Fortune
 
 ## Works only with: 
-Wheat, Carrots, Potatoes, Beetroots, Nether Warts and Cocoa when you have an Axe in mainhaind
+Wheat, Carrots, Potatoes, Beetroots, Nether Warts.
+Cocoa when you have an axe in mainhaind
 
 ## Planned features:
 Add a Config
